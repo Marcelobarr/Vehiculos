@@ -61,6 +61,28 @@ namespace Vehiculos
             write.Close();
         }
 
+        void leer_vehiculo()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            string filename = "Carro.txt";
+            FileStream st = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(st);
+            while (reader.Peek() > -1)
+            {
+                Carros a = new Carros();
+                a.Placa = reader.ReadLine();
+                a.Marca = reader.ReadLine();
+                a.Modelo = reader.ReadLine();
+                a.Color = reader.ReadLine();
+                a.Precio_Km = Convert.ToDouble(reader.ReadLine());
+                carro.Add(a);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = carro;
+                dataGridView1.Refresh();
+            }
+            reader.Close();
+        }
+
 
     }
 }
