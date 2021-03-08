@@ -112,8 +112,9 @@ namespace Vehiculos
             while (reader.Peek() > -1)
             {
                 Carros a = new Carros();
-                a.Marca = reader.ReadLine();
+
                 a.Placa = reader.ReadLine();
+                a.Marca = reader.ReadLine();
                 a.Modelo = reader.ReadLine();
                 a.Color = reader.ReadLine();
                 a.Precio_Km = Convert.ToDouble(reader.ReadLine());
@@ -123,7 +124,7 @@ namespace Vehiculos
             reader.Close();
 
             comboBox2.DisplayMember = "Placa";
-            comboBox2.ValueMember = "Modelo";
+            comboBox2.ValueMember = "Placa";
 
             comboBox2.DataSource = null;
             comboBox2.DataSource = carro;
@@ -150,7 +151,7 @@ namespace Vehiculos
             reader.Close();
 
             comboBox1.DisplayMember = "NIT";
-            comboBox1.ValueMember = "Nombre";
+            comboBox1.ValueMember = "NIT";
 
             comboBox1.DataSource = null;
             comboBox1.DataSource = cliente;
