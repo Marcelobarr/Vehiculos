@@ -55,6 +55,28 @@ namespace Vehiculos
             write.Close();
         }
 
+        void leer_alquiler()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            string filename = "Alquiler.txt";
+            FileStream st = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(st);
+            while (reader.Peek() > -1)
+            {
+                Alquiler a = new Alquiler();
+                a.Nit = reader.ReadLine();
+                a.Placa = reader.ReadLine();
+                a.Fecha_Alquiler = reader.ReadLine();
+                a.Fecha_Devolucion = reader.ReadLine();
+                a.K_Recorridos = Convert.ToDouble(reader.ReadLine());
+                alqui.Add(a);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = alqui;
+                dataGridView1.Refresh();
+            }
+            reader.Close();
+        }
+
         void leer_placa()
         {
             OpenFileDialog op = new OpenFileDialog();
