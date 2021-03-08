@@ -112,8 +112,8 @@ namespace Vehiculos
             while (reader.Peek() > -1)
             {
                 Carros a = new Carros();
-                a.Placa = reader.ReadLine();
                 a.Marca = reader.ReadLine();
+                a.Placa = reader.ReadLine();
                 a.Modelo = reader.ReadLine();
                 a.Color = reader.ReadLine();
                 a.Precio_Km = Convert.ToDouble(reader.ReadLine());
