@@ -25,7 +25,35 @@ namespace Vehiculos
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(textBox3.Text))
+            {
+                agregar();
+                repetidos();
+                Clientes f = new Clientes();
+                if (c)
+                {
+                    MessageBox.Show("El NIT introducido ya esta en uso");
+                    textBox1.Clear();
+                }
+                else
+                {
+                    f.Nit = textBox1.Text;
+                    f.Nombre = textBox2.Text;
+                    f.Direccion = textBox3.Text;
+                    persona.Add(f);
+                    MessageBox.Show("El cliente se ha registrado correctamente");
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    escribir_cliente();
+                }
+            }
+            else
+            {
+                MessageBox.Show("?ERROR!, Debe de llenar todos los campos");
+            }
+            c = false;
+            cont = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
