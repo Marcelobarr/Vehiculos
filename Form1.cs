@@ -28,7 +28,39 @@ namespace Vehiculos
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(textBox3.Text) && !string.IsNullOrEmpty(textBox4.Text) && !string.IsNullOrEmpty(textBox5.Text))
+            {
+                agregar();
+                repetidos();
+                Carros f = new Carros();
+                if (a)
+                {
+                    MessageBox.Show("La placa del vehiculo ya esta registrada, por favor vuelva a intentarlo");
+                    textBox1.Clear();
+                }
+                else
+                {
+                    f.Placa = textBox1.Text;
+                    f.Marca = textBox2.Text;
+                    f.Modelo = textBox3.Text;
+                    f.Color = textBox4.Text;
+                    f.Precio_Km = Convert.ToInt32(textBox5.Text);
+                    carro.Add(f);
+                    MessageBox.Show("Se ha agregado correctamente en la base de datos");
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                    textBox5.Clear();
+                    escribir_vehiculo();
+                }
+            }
+            else
+            {
+                MessageBox.Show("¡ERROR!, Debe llenar todos los campos");
+            }
+            a = false;
+            c = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -97,9 +129,6 @@ namespace Vehiculos
                 }
             }
         }
-
-
-
 
     }
 }
