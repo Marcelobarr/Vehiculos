@@ -27,7 +27,26 @@ namespace Vehiculos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                agregar();
+                repetidos();
+                Alquiler f = new Alquiler();
+
+                f.Nit = comboBox1.SelectedValue.ToString();
+                f.Placa = comboBox2.SelectedValue.ToString();
+                f.Fecha_Alquiler = dateTimePicker1.Value.ToString();
+                f.Fecha_Devolucion = dateTimePicker2.Value.ToString();
+                f.K_Recorridos = Convert.ToDouble(textBox1.Text);
+                alqui.Add(f);
+                MessageBox.Show("Se registro correctamente el alquiler");
+                textBox1.Clear();
+                escribir_alquiler();
+            }
+            else
+            {
+                MessageBox.Show("Debe de llenar todos los campos");
+            }
         }
 
         private void Form3_Load(object sender, EventArgs e)
