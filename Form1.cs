@@ -29,5 +29,24 @@ namespace Vehiculos
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        void agregar()
+        {
+            Carros a = new Carros();
+            a.Placa = textBox1.Text;
+            a.Marca = textBox2.Text;
+            a.Modelo = textBox3.Text;
+            a.Color = textBox4.Text;
+            a.Precio_Km = Convert.ToDouble(textBox5.Text);
+        }
+
+
+
+
     }
 }
