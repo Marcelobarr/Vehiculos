@@ -83,6 +83,23 @@ namespace Vehiculos
             reader.Close();
         }
 
+        void repetidos()
+        {
+            while (a == false && c < carro.Count)
+            {
+                if (carro[c].Placa.CompareTo(textBox1.Text) == 0)
+                {
+                    a = true;
+                }
+                else
+                {
+                    c++;
+                }
+            }
+        }
+
+
+
 
     }
 }
