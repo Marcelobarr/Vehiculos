@@ -27,7 +27,14 @@ namespace Vehiculos
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            leer_nit();
+            leer_placa();
+            leer_alquiler();
         }
 
         void agregar()
@@ -145,5 +152,7 @@ namespace Vehiculos
                 }
             }
         }
+
+        
     }
 }
