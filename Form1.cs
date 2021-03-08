@@ -46,7 +46,7 @@ namespace Vehiculos
                     f.Color = textBox4.Text;
                     f.Precio_Km = Convert.ToInt32(textBox5.Text);
                     carro.Add(f);
-                    MessageBox.Show("Se ha agregado correctamente en la base de datos");
+                    MessageBox.Show("El vehiculo se ha registrado correctamente");
                     textBox1.Clear();
                     textBox2.Clear();
                     textBox3.Clear();
