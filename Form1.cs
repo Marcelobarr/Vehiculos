@@ -19,6 +19,7 @@ namespace Vehiculos
 
 
 
+
         public Form1()
         {
             InitializeComponent();
