@@ -67,6 +67,11 @@ namespace Vehiculos
         {
 
         }
+        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            leer_vehiculo();
+        }
 
         void agregar()
         {
@@ -130,5 +135,6 @@ namespace Vehiculos
             }
         }
 
+        
     }
 }
