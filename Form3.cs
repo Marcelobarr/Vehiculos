@@ -55,6 +55,32 @@ namespace Vehiculos
             write.Close();
         }
 
+        void leer_placa()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            string filename = "Carro.txt";
+            FileStream st = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(st);
+            while (reader.Peek() > -1)
+            {
+                Carros a = new Carros();
+                a.Placa = reader.ReadLine();
+                a.Marca = reader.ReadLine();
+                a.Modelo = reader.ReadLine();
+                a.Color = reader.ReadLine();
+                a.Precio_Km = Convert.ToDouble(reader.ReadLine());
+                carro.Add(a);
+
+            }
+            reader.Close();
+
+            comboBox2.DisplayMember = "Placa";
+            comboBox2.ValueMember = "Modelo";
+
+            comboBox2.DataSource = null;
+            comboBox2.DataSource = carro;
+            comboBox2.Refresh();
+        }
 
 
         void leer_nit()
