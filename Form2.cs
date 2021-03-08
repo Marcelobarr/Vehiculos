@@ -32,6 +32,13 @@ namespace Vehiculos
 
         }
 
+        void agregar()
+        {
+            Clientes x = new Clientes();
+            x.Nit = textBox1.Text;
+            x.Nombre = textBox2.Text;
+            x.Direccion = textBox3.Text;
+        }
 
 
     }
