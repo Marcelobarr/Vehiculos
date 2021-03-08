@@ -74,5 +74,19 @@ namespace Vehiculos
             reader.Close();
         }
 
+        void repetidos()
+        {
+            while (c == false && cont < persona.Count)
+            {
+                if (persona[cont].Nit.CompareTo(textBox1.Text) == 0)
+                {
+                    c = true;
+                }
+                else
+                {
+                    cont++;
+                }
+            }
+        }
     }
 }
