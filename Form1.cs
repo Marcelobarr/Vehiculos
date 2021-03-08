@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,20 @@ namespace Vehiculos
             a.Precio_Km = Convert.ToDouble(textBox5.Text);
         }
 
-
+        void escribir_vehiculo()
+        {
+            FileStream stream = new FileStream("Carro.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter write = new StreamWriter(stream);
+            foreach (var d in carro)
+            {
+                write.WriteLine(d.Placa);
+                write.WriteLine(d.Marca);
+                write.WriteLine(d.Modelo);
+                write.WriteLine(d.Color);
+                write.WriteLine(d.Precio_Km);
+            }
+            write.Close();
+        }
 
 
     }
