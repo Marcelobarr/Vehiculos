@@ -12,6 +12,11 @@ namespace Vehiculos
 {
     public partial class Form2 : Form
     {
+        List<Clientes> persona = new List<Clientes>();
+        Boolean c = false;
+        int cont = 0;
+
+
         public Form2()
         {
             InitializeComponent();
@@ -26,5 +31,8 @@ namespace Vehiculos
         {
 
         }
+
+
+
     }
 }
