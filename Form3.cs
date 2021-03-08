@@ -30,6 +30,16 @@ namespace Vehiculos
 
         }
 
+        void agregar()
+        {
+            Alquiler c = new Alquiler();
+            c.Nit = comboBox1.SelectedValue.ToString();
+            c.Placa = comboBox2.SelectedValue.ToString();
+            c.Fecha_Alquiler = dateTimePicker1.Value.ToString();
+            c.Fecha_Devolucion = dateTimePicker2.Value.ToString();
+            c.K_Recorridos = Convert.ToDouble(textBox1.Text);
+        }
+
         void leer_nit()
         {
             OpenFileDialog op = new OpenFileDialog();
