@@ -50,7 +50,7 @@ namespace Vehiculos
             }
             else
             {
-                MessageBox.Show("?ERROR!, Debe de llenar todos los campos");
+                MessageBox.Show("¡ERROR!, Debe de llenar todos los campos");
             }
             c = false;
             cont = 0;
@@ -58,7 +58,10 @@ namespace Vehiculos
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Form1 f1 = new Form1();
+            Form2 f2 = new Form2();
+            f2.Hide();
+            f1.Show();
         }
 
         void agregar()
