@@ -40,6 +40,23 @@ namespace Vehiculos
             c.K_Recorridos = Convert.ToDouble(textBox1.Text);
         }
 
+        void escribir_alquiler()
+        {
+            FileStream stream = new FileStream("Alquiler.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter write = new StreamWriter(stream);
+            foreach (var d in alqui)
+            {
+                write.WriteLine(d.Nit);
+                write.WriteLine(d.Placa);
+                write.WriteLine(d.Fecha_Alquiler);
+                write.WriteLine(d.Fecha_Devolucion);
+                write.WriteLine(d.K_Recorridos);
+            }
+            write.Close();
+        }
+
+
+
         void leer_nit()
         {
             OpenFileDialog op = new OpenFileDialog();
