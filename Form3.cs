@@ -52,7 +52,7 @@ namespace Vehiculos
             comboBox1.ValueMember = "Nombre";
 
             comboBox1.DataSource = null;
-            comboBox1.DataSource = per;
+            comboBox1.DataSource = cliente;
             comboBox1.Refresh();
         }
 
