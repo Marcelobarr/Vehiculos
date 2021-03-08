@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,17 @@ namespace Vehiculos
             x.Direccion = textBox3.Text;
         }
 
-
+        void escribir_cliente()
+        {
+            FileStream stream = new FileStream("Cliente.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter write = new StreamWriter(stream);
+            foreach (var d in persona)
+            {
+                write.WriteLine(d.Nit);
+                write.WriteLine(d.Nombre);
+                write.WriteLine(d.Direccion);
+            }
+            write.Close();
+        }
     }
 }
