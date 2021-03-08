@@ -131,5 +131,19 @@ namespace Vehiculos
             comboBox1.Refresh();
         }
 
+        void repetidos()
+        {
+            while (a == false && c < alqui.Count)
+            {
+                if (alqui[c].Placa.CompareTo(comboBox1.SelectedValue.ToString()) == 0)
+                {
+                    a = true;
+                }
+                else
+                {
+                    c++;
+                }
+            }
+        }
     }
 }
