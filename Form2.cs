@@ -53,5 +53,26 @@ namespace Vehiculos
             }
             write.Close();
         }
+
+        void leer_cliente()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            string filename = "Cliente.txt";
+            FileStream st = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(st);
+            while (reader.Peek() > -1)
+            {
+                Clientes a = new Clientes();
+                a.Nit = reader.ReadLine();
+                a.Nombre = reader.ReadLine();
+                a.Direccion = reader.ReadLine();
+                persona.Add(a);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = persona;
+                dataGridView1.Refresh();
+            }
+            reader.Close();
+        }
+
     }
 }
