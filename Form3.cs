@@ -42,11 +42,24 @@ namespace Vehiculos
                 MessageBox.Show("Se registro correctamente el alquiler");
                 textBox1.Clear();
                 escribir_alquiler();
+
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = alqui;
+                dataGridView1.Refresh();
+               
+                if (alqui.Count >= 1)
+                {
+                    ordenar();
+
+                }
+
             }
             else
             {
                 MessageBox.Show("Debe de llenar todos los campos");
             }
+
+           
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -54,6 +67,13 @@ namespace Vehiculos
             leer_nit();
             leer_placa();
             leer_alquiler();
+
+            if (alqui.Count >= 1)
+            {
+                ordenar();
+
+            }
+
         }
 
         void agregar()
@@ -171,6 +191,14 @@ namespace Vehiculos
                     c++;
                 }
             }
+        }
+
+        void ordenar()
+        {
+            label7.Text.Remove(0);
+            alqui = alqui.OrderByDescending(a => a.K_Recorridos).ToList();
+            label7.Text = Convert.ToString(alqui[0].K_Recorridos);
+
         }
 
         

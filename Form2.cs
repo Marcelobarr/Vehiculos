@@ -34,6 +34,10 @@ namespace Vehiculos
                 {
                     MessageBox.Show("El NIT introducido ya esta en uso");
                     textBox1.Clear();
+
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = persona;
+                    dataGridView1.Refresh();
                 }
                 else
                 {
@@ -64,12 +68,20 @@ namespace Vehiculos
             f1.Show();
         }
 
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            leer_cliente();
+        }
+
         void agregar()
         {
             Clientes x = new Clientes();
+            
             x.Nit = textBox1.Text;
             x.Nombre = textBox2.Text;
             x.Direccion = textBox3.Text;
+
+            persona.Add(x);
         }
 
         void escribir_cliente()
@@ -119,5 +131,7 @@ namespace Vehiculos
                 }
             }
         }
+
+       
     }
 }
