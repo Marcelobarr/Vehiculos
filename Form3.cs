@@ -16,9 +16,17 @@ namespace Vehiculos
         List<Alquiler> alqui = new List<Alquiler>();
         List<Clientes> cliente = new List<Clientes>();
         List<Carros> carro = new List<Carros>();
+        List<Total> tot = new List<Total>();
+
+        Boolean q = false;
+        int cont_p = 0;
+
+        Boolean x = false;
+        int cont2 = 0;
 
         Boolean a = false;
         int c = 0;
+
 
         public Form3()
         {
@@ -32,6 +40,7 @@ namespace Vehiculos
                 agregar();
                 repetidos();
                 Alquiler f = new Alquiler();
+                Total t = new Total();
 
                 f.Nit = comboBox1.SelectedValue.ToString();
                 f.Placa = comboBox2.SelectedValue.ToString();
@@ -40,17 +49,53 @@ namespace Vehiculos
                 f.K_Recorridos = Convert.ToDouble(textBox1.Text);
                 alqui.Add(f);
                 MessageBox.Show("Se registro correctamente el alquiler");
-                textBox1.Clear();
+                
                 escribir_alquiler();
 
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = alqui;
                 dataGridView1.Refresh();
-               
+
+                    
                 if (alqui.Count >= 1)
                 {
                     ordenar();
 
+                }
+
+                buscar_combo();
+                buscar_placa();
+                if (x && q)
+                {
+                    t.Nombre = cliente[cont2].Nombre;
+                    t.Placa = carro[cont_p].Placa;
+                    t.Marca = carro[cont_p].Marca;
+                    t.Modelo = carro[cont_p].Modelo;
+                    t.Color = carro[cont_p].Color;
+                    t.Precio_km = carro[cont_p].Precio_Km;
+                    t.F_devolucion = dateTimePicker2.Value.ToString();
+                    t.Tot = carro[cont_p].Precio_Km * Convert.ToDouble(textBox1.Text);
+                    
+
+                    tot.Add(t);
+
+                    escribir_total();
+
+                    dataGridView2.DataSource = null;
+                    dataGridView2.DataSource = tot;
+                    dataGridView2.Refresh();
+
+                    q = false;
+                    x = false;
+                    cont_p = 0;
+                    cont2 = 0;
+
+                    textBox1.Clear();
+
+                }
+                else
+                {
+                    cont2 = 0;
                 }
 
             }
@@ -58,6 +103,7 @@ namespace Vehiculos
             {
                 MessageBox.Show("Debe de llenar todos los campos");
             }
+
 
            
         }
@@ -67,6 +113,8 @@ namespace Vehiculos
             leer_nit();
             leer_placa();
             leer_alquiler();
+            leer_total();
+           
 
             if (alqui.Count >= 1)
             {
@@ -138,6 +186,7 @@ namespace Vehiculos
                 a.Modelo = reader.ReadLine();
                 a.Color = reader.ReadLine();
                 a.Precio_Km = Convert.ToDouble(reader.ReadLine());
+                
                 carro.Add(a);
 
             }
@@ -170,8 +219,8 @@ namespace Vehiculos
             }
             reader.Close();
 
-            comboBox1.DisplayMember = "NIT";
-            comboBox1.ValueMember = "NIT";
+            comboBox1.DisplayMember = "Nit";
+            comboBox1.ValueMember = "Nit";
 
             comboBox1.DataSource = null;
             comboBox1.DataSource = cliente;
@@ -201,6 +250,83 @@ namespace Vehiculos
 
         }
 
-        
+        void escribir_total()
+        {
+            FileStream stream = new FileStream("Total.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter write = new StreamWriter(stream);
+
+            foreach (var d in tot)
+            {
+                write.WriteLine(d.Nombre);
+                write.WriteLine(d.Placa);
+                write.WriteLine(d.Marca);
+                write.WriteLine(d.Modelo);
+                write.WriteLine(d.Color);
+                write.WriteLine(d.Precio_km);
+                write.WriteLine(d.F_devolucion);
+                write.WriteLine(d.Tot);
+
+            }
+            write.Close();
+        }
+
+        void leer_total()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            string filename = "Total.txt";
+            FileStream st = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(st);
+
+            while (reader.Peek() > -1)
+            {
+                Total a = new Total();
+                a.Nombre = reader.ReadLine();
+                a.Placa = reader.ReadLine();
+                a.Marca = reader.ReadLine();
+                a.Modelo = reader.ReadLine();
+                a.Color = reader.ReadLine();
+                a.Precio_km = Convert.ToDouble(reader.ReadLine());
+                a.F_devolucion = reader.ReadLine();
+                a.Tot = Convert.ToDouble(reader.ReadLine());
+
+                tot.Add(a);
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = tot;
+                dataGridView2.Refresh();
+
+            }
+            reader.Close();
+
+        }
+
+        void buscar_combo()
+        {
+            while (x == false && cont2 < cliente.Count)
+            {
+                if (cliente[cont2].Nit.CompareTo(comboBox1.SelectedValue) == 0)
+                {
+                    x = true;
+                }
+                else
+                {
+                    cont2++;
+                }
+            }
+        }
+
+        void buscar_placa()
+        {
+            while (q == false && cont_p < carro.Count)
+            {
+                if (carro[cont_p].Placa.CompareTo(comboBox2.SelectedValue) == 0)
+                {
+                    q = true;
+                }
+                else
+                {
+                    cont_p++;
+                }
+            }
+        }
     }
 }

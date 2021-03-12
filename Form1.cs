@@ -15,11 +15,10 @@ namespace Vehiculos
     {
 
         List<Carros> carro = new List<Carros>();
+        List<Total> tot = new List<Total>();
         Boolean a = false;
         int c = 0;
-
-
-
+  
 
         public Form1()
         {
@@ -33,6 +32,8 @@ namespace Vehiculos
                 agregar();
                 repetidos();
                 Carros f = new Carros();
+                Total t = new Total();
+
                 if (a)
                 {
                     MessageBox.Show("La placa del vehiculo ya esta registrada, por favor vuelva a intentarlo");
@@ -40,6 +41,8 @@ namespace Vehiculos
                 }
                 else
                 {
+
+
                     f.Placa = textBox1.Text;
                     f.Marca = textBox2.Text;
                     f.Modelo = textBox3.Text;
@@ -53,6 +56,10 @@ namespace Vehiculos
                     textBox4.Clear();
                     textBox5.Clear();
                     escribir_vehiculo();
+
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = carro;
+                    dataGridView1.Refresh();
                 }
             }
             else
@@ -143,6 +150,50 @@ namespace Vehiculos
 
         }
 
-        
+        void escribir_total()
+        {
+            FileStream stream = new FileStream("Total.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter write = new StreamWriter(stream);
+
+            foreach (var d in tot)
+            {
+                write.WriteLine(d.Placa);
+                write.WriteLine(d.Marca);
+                write.WriteLine(d.Modelo);
+                write.WriteLine(d.Color);
+                write.WriteLine(d.Precio_km);
+                write.WriteLine(d.F_devolucion);
+                write.WriteLine(d.Tot);
+
+            }
+            write.Close();
+        }
+
+        void leer_total()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            string filename = "Total.txt";
+            FileStream st = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(st);
+
+            while (reader.Peek() > -1)
+            {
+                Total a = new Total();
+                a.Placa = reader.ReadLine();
+                a.Marca = reader.ReadLine();
+                a.Modelo = reader.ReadLine();
+                a.Color = reader.ReadLine();
+                a.Precio_km = Convert.ToDouble(reader.ReadLine());
+                a.F_devolucion = reader.ReadLine();
+                a.Tot = Convert.ToDouble(reader.ReadLine());
+
+                tot.Add(a);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = tot;
+                dataGridView1.Refresh();
+
+            }
+            reader.Close();
+        }
     }
 }

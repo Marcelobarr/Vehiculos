@@ -35,9 +35,8 @@ namespace Vehiculos
                     MessageBox.Show("El NIT introducido ya esta en uso");
                     textBox1.Clear();
 
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = persona;
-                    dataGridView1.Refresh();
+                    c = false;
+                    cont = 0;
                 }
                 else
                 {
@@ -50,22 +49,19 @@ namespace Vehiculos
                     textBox2.Clear();
                     textBox3.Clear();
                     escribir_cliente();
+
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = persona;
+                    dataGridView1.Refresh();
+
+                    cont = 0;
                 }
             }
             else
             {
                 MessageBox.Show("¡ERROR!, Debe de llenar todos los campos");
             }
-            c = false;
-            cont = 0;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form1 f1 = new Form1();
-            Form2 f2 = new Form2();
-            f2.Hide();
-            f1.Show();
+            
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -81,7 +77,6 @@ namespace Vehiculos
             x.Nombre = textBox2.Text;
             x.Direccion = textBox3.Text;
 
-            persona.Add(x);
         }
 
         void escribir_cliente()
